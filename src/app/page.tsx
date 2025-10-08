@@ -169,36 +169,76 @@ const Header = ({ showCartNotification }: HeaderProps) => {
                 )}
               </AnimatePresence>
               <AnimatePresence>
-                {isCartOpen && (
-                  <motion.div key="cart-popup" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl shadow-2xl z-50">
-                    <div className="p-4">
-                      <h3 className="text-lg font-bold mb-2 dark:text-white">Your Cart</h3>
-                      {cartItems.length === 0 ? (<p className="text-sm text-gray-500 text-center py-6">Your cart is empty.</p>) : (
-                        <>
-                          <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
-                            {cartItems.map((item) => (
-                              <div key={item.id} className="flex items-center justify-between bg-gray-100 dark:bg-gray-700 rounded-lg p-2">
-                                <div className="flex items-center space-x-3">
-                                  <Image src={item.image} alt={item.name} width={48} height={48} className="object-cover rounded-md" />
-                                  <div>
-                                    <p className="text-sm font-semibold dark:text-white">{item.name}</p>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400">Rp {item.price}</p>
-                                  </div>
-                                </div>
-                                <button onClick={() => handleRemoveItem(item.id)} className="text-xs text-red-500 hover:underline">Remove</button>
-                              </div>
-                            ))}
+          {isCartOpen && (
+            <motion.div
+              key="cart-popup"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              className="
+                absolute z-50
+                mt-2 w-80
+                bg-white dark:bg-gray-800 border dark:border-gray-700
+                rounded-xl shadow-2xl
+                left-1/2 -translate-x-1/2
+                md:left-auto md:right-0 md:translate-x-0
+              "
+            >
+              <div className="p-4">
+                <h3 className="text-lg font-bold mb-2 dark:text-white">Your Cart</h3>
+
+                {cartItems.length === 0 ? (
+                  <p className="text-sm text-gray-500 text-center py-6">Your cart is empty.</p>
+                ) : (
+                  <>
+                    <div className="space-y-3 max-h-64 overflow-y-auto pr-2">
+                      {cartItems.map((item) => (
+                        <div
+                          key={item.id}
+                          className="flex items-center justify-between bg-gray-100 dark:bg-gray-700 rounded-lg p-2"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <Image
+                              src={item.image}
+                              alt={item.name}
+                              width={48}
+                              height={48}
+                              className="object-cover rounded-md"
+                            />
+                            <div>
+                              <p className="text-sm font-semibold dark:text-white">{item.name}</p>
+                              <p className="text-xs text-gray-500 dark:text-gray-400">Rp {item.price}</p>
+                            </div>
                           </div>
-                          <div className="border-t dark:border-gray-700 mt-3 pt-3">
-                            <p className="text-right font-bold dark:text-gray-100">Total: Rp {getTotal().toLocaleString("id-ID")}</p>
-                          </div>
-                          <button onClick={handleCheckout} className="mt-4 w-full py-2 bg-blue-600 dark:bg-cyan-500 text-white font-semibold rounded-full hover:bg-blue-700 dark:hover:bg-cyan-600 transition">Checkout</button>
-                        </>
-                      )}
+                          <button
+                            onClick={() => handleRemoveItem(item.id)}
+                            className="text-xs text-red-500 hover:underline"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      ))}
                     </div>
-                  </motion.div>
+
+                    <div className="border-t dark:border-gray-700 mt-3 pt-3">
+                      <p className="text-right font-bold dark:text-gray-100">
+                        Total: Rp {getTotal().toLocaleString("id-ID")}
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={handleCheckout}
+                      className="mt-4 w-full py-2 bg-blue-600 dark:bg-cyan-500 text-white font-semibold rounded-full hover:bg-blue-700 dark:hover:bg-cyan-600 transition"
+                    >
+                      Checkout
+                    </button>
+                  </>
                 )}
-              </AnimatePresence>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
             </div>
             <motion.button onClick={toggleTheme} whileTap={{ scale: 0.9 }} className="p-3 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-yellow-400" aria-label="Toggle Dark Mode">
               <AnimatePresence mode="wait" initial={false}>
