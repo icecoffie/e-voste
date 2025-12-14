@@ -46,7 +46,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        {/* ✅ Google Tag Manager Script (dipindah ke body, sesuai aturan Next.js) */}
         <Script id="gtm-init" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -57,13 +56,11 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Fallback JS untuk Font Awesome */}
         <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/js/all.min.js"
           strategy="afterInteractive"
         />
 
-        {/* GTM fallback */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-N6NDVQQH"
