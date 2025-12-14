@@ -6,7 +6,6 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from './firebaseConfig'; 
 
-// --- 1. Tipe Data & Data Statis ---
 interface Product {
   id: number;
   name: string;
@@ -279,7 +278,6 @@ const Header = ({ showCartNotification }: HeaderProps) => {
 
 
 // --- 5. REUSABLE SECTION CONTAINER ---
-// ✅ FIX: Menambahkan tipe `Variants` dari framer-motion untuk memperbaiki error TypeScript.
 const sectionVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: { 
